@@ -74,7 +74,7 @@ export default function Episode({ episode }: EpisodeProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-	const { data } = await api.get('episodes', {
+	const { data } = await api.get('episodes/', {
 		params: {
 			_limit: 2,
 			_sort: 'published_at',
@@ -97,7 +97,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
 	const { slug } = context.params;
 
-	const { data } = await api.get(`/episodes/${slug}`);
+	const { data } = await api.get(`episodes/${slug}`);
 
 	const episode = {
 		id: data.id,
